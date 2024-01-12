@@ -1,0 +1,399 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.username {
+    margin-right: 20px;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: #222;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1001;
+}
+
+.header-logo {
+    max-width: 50px;
+    height: auto;
+    margin-right: 20px;
+}
+
+
+.header h1 {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+}
+
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 1000;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+}
+
+.main-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #2b2b2b;
+    height: 100vh;
+    padding: 20px 0;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    top: 75px;
+}
+
+.sidebar-hidden .sidebar {
+    transform: translateX(-100%);
+}
+
+.sidebar-hidden .content-area {
+    margin-left: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 20px;
+    margin: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    margin: 5px 0;
+    background-color: #444;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar ul li:hover {
+    background: linear-gradient(145deg, #1e1e1e, #464646);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul li a:hover {
+    color: #4ad91f;
+    transform: scale(1.05);
+}
+
+.content-area {
+    padding: 10px;
+    transition: margin-left 0.3s ease;
+    margin-left: 200px;
+}
+
+.home-menu h2,
+.reservation-menu h2,
+.account-menu h2 {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.dashboard {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.dashboard h2 {
+    color: #fff;
+}
+
+.dashboard p {
+    color: #bbb;
+}
+
+.chart-container {
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    position: relative;
+}
+
+.reservation-menu {
+    padding: 10px;
+}
+
+.reservation-form {
+    width: auto;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reservation-form input[type="datetime-local"],
+.reservation-form select,
+.reservation-form button {
+    width: auto;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #333;
+    color: #ddd;
+}
+
+.reservation-form label {
+    line-height: 1.5;
+    display: block;
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+.reserve-button {
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.reserve-button:hover {
+    background-color: #4cae4c;
+}
+
+.table-section,
+.reservation-list {
+    border-collapse: collapse;
+    width: auto;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #444;
+    color: #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.table-section th,
+.table-section td,
+.reservation-list th,
+.reservation-list td {
+    border: 1px solid #555;
+    padding: 10px;
+    text-align: left;
+    font-family: Arial, sans-serif;
+}
+
+.table-section thead,
+.reservation-list thead {
+    background-color: #333;
+    color: #fff;
+}
+
+.table-section tbody tr:nth-child(even),
+.reservation-list tbody tr:nth-child(even) {
+    background-color: #3d3d3d;
+}
+
+.table-section tbody tr:hover,
+.reservation-list tbody tr:hover {
+    background-color: #2d2d2d;
+}
+
+.delete-reservation-button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.delete-reservation-button:hover {
+    background-color: #4cae4c;
+}
+
+.account-menu {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.account-menu h2 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.account-menu form {
+    background-color: #333;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.account-menu label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+.account-menu input[type="email"],
+.account-menu input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #222;
+    color: #fff;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.account-menu .change-button,
+.account-menu .delete-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.account-menu .change-button:hover,
+.account-menu .delete-button:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 600px) {
+    body {
+        flex-direction: column;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-logo {
+        margin-bottom: 10px;
+    }
+
+    .header-info {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .sidebar,
+    .main-area {
+        width: 100%;
+    }
+
+    .reservation-list {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .account-menu {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .account-menu form {
+        padding: 10px;
+    }
+}
+
+.logout-button {
+    background-color: #8B0000;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #A52A2A;
+}
+
+.notification-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 1000;
+}

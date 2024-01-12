@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  mariadb:
+    build:
+      context: ./MariaDB
+    hostname: mariadb-container
+    ports:
+      - "3306:3306"
+    environment:
+      - MARIADB_DATABASE=carrenting
+    networks:
+      - carrenting
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "healthcheck.sh",
+          "--su-mysql",
+          "--connect",
+          "--innodb_initialized"
+        ]
+      start_period: 10s
+      start_interval: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  employee:
+    build:
+      context: ./Employee
+    hostname: employee-container
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    networks:
+      - carrenting
+
+  car:
+    build:
+      context: ./Car
+    hostname: car-container
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    networks:
+      - carrenting
+
+  customer:
+    build:
+      context: ./Customer
+    hostname: customer-container
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8082:8082"
+    networks:
+      - carrenting
+
+  reservation:
+    build:
+      context: ./Reservation
+    hostname: reservation-container
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8083:8083"
+    networks:
+      - carrenting
+
+  web:
+    build:
+      context: ./UserInterface
+    hostname: web-container
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./UserInterface:/usr/share/nginx/html
+    networks:
+      - carrenting
+
+networks:
+  carrenting:
