@@ -74,6 +74,54 @@ services:
     networks:
       - carrenting
 
+  gps:
+    build:
+      context: ./GPS
+    hostname: gps-container
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8090:8090"
+    networks:
+      - carrenting
+
+  maintenance:
+    build:
+      context: ./Maintenance
+    hostname: maintenance-container
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8084:8084"
+    networks:
+      - carrenting
+
+  notification:
+    build:
+      context: ./Notification
+    hostname: notification-container
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8085:8085"
+    networks:
+      - carrenting
+
+  report:
+    build:
+      context: ./Report
+    hostname: report-container
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8086:8086"
+    networks:
+      - carrenting
+
   web:
     build:
       context: ./UserInterface

@@ -115,7 +115,7 @@ function deleteCookie(name) {
 /* -------------------- Websocket Verbindung -------------------- */
 
 function connectWebSocket(customerId) {
-  var socket = new SockJS("http://customer-container:8085/websocket");
+  var socket = new SockJS("http://localhost:8085/websocket");
   stompClient = Stomp.over(socket);
   stompClient.connect({}, function (frame) {
     console.log("Connected: " + frame);
@@ -144,12 +144,12 @@ function showReservation() {
 
   var customerId = getCookie("customerId");
 
-  fetch(`http://customer-container:8082/api/customer/reservation/user/${customerId}`)
+  fetch(`http://localhost:8082/api/customer/reservation/user/${customerId}`)
     .then((response) => response.json())
     .then((reservations) => {
       populateReservationTable(reservations);
 
-      fetch(`http://customer-container:8082/api/customer/reservation/availableVehicle`)
+      fetch(`http://localhost:8082/api/customer/reservation/availableVehicle`)
         .then((response) => response.json())
         .then((availableCars) => {
           populateAvailableCarsTable(availableCars);
@@ -208,7 +208,7 @@ function populateReservationTable(reservations) {
 }
 
 function deleteReservation(reservationId) {
-  fetch(`http://customer-container:8082/api/customer/reservation/${reservationId}`, {
+  fetch(`http://localhost:8082/api/customer/reservation/${reservationId}`, {
     method: "DELETE"
   })
     .then((response) => {
@@ -236,7 +236,7 @@ function updateEmail(oldEmail, newEmail) {
     newEmail: newEmail,
   };
 
-  fetch(`http://customer-container:8082/api/customer/update-email`, {
+  fetch(`http://localhost:8082/api/customer/update-email`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -264,7 +264,7 @@ function changePassword(email, oldPassword, newPassword) {
     newPassword: newPassword,
   };
 
-  fetch(`http://customer-container:8082/api/customer/change-password`, {
+  fetch(`http://localhost:8082/api/customer/change-password`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -291,7 +291,7 @@ function deleteAccount(email, password) {
     password: password,
   };
 
-  fetch("http://customer-container:8082/api/customer/delete", {
+  fetch("http://localhost:8082/api/customer/delete", {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -334,7 +334,7 @@ function createReservation(carId, startTime, endTime) {
     carID: carId
   };
 
-  fetch(`http://customer-container:8082/api/customer/reservation`, {
+  fetch(`http://localhost:8082/api/customer/reservation`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(reservationData)
@@ -354,7 +354,7 @@ function createReservation(carId, startTime, endTime) {
 }
 
 function fetchAvailableCars() {
-  fetch(`http://customer-container:8082/api/customer/reservation/availableVehicle`)
+  fetch(`http://localhost:8082/api/customer/reservation/availableVehicle`)
     .then((response) => response.json())
     .then((cars) => {
       const carSelect = document.getElementById("carSelect");

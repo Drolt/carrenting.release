@@ -11,7 +11,7 @@ function signUp() {
     password: newPassword,
   };
 
-  fetch("http://customer-container:8082/api/customer", {
+  fetch("http://localhost:8082/api/customer", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
