@@ -45,8 +45,6 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
-    ports:
-      - "8080:8080"
     networks:
       - carrenting
 
@@ -69,8 +67,6 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
-    ports:
-      - "8083:8083"
     networks:
       - carrenting
 
@@ -117,8 +113,6 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
-    ports:
-      - "8086:8086"
     networks:
       - carrenting
 
